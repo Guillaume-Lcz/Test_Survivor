@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Content *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Test-Path *)",
+      "Bash(curl -s http://127.0.0.1:8080)",
+      "Bash(findstr \":8080\")",
+      "Bash(curl -s --max-time 5 http://127.0.0.1:8080/mcp)",
+      "PowerShell(Test-NetConnection *)",
+      "Bash(curl -v --max-time 5 http://127.0.0.1:8080/)",
+      "Bash(curl -v --max-time 5 -X POST -H \"Content-Type: application/json\" -d '{\"jsonrpc\":\"2.0\",\"method\":\"initialize\",\"id\":1}' http://127.0.0.1:8080/mcp)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(netstat *)",
+      "PowerShell(tasklist *)",
+      "Bash(curl -s --max-time 5 -X POST -H \"Content-Type: application/json\" -d '{\"jsonrpc\":\"2.0\",\"method\":\"initialize\",\"id\":1}' http://127.0.0.1:8090/mcp)",
+      "mcp__UnityMCP__manage_scene",
+      "mcp__UnityMCP__manage_camera",
+      "mcp__UnityMCP__create_script",
+      "mcp__UnityMCP__batch_execute",
+      "mcp__UnityMCP__manage_gameobject",
+      "mcp__UnityMCP__manage_components",
+      "mcp__UnityMCP__read_console"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "UnityMCP"
+  ]
+}
