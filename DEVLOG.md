@@ -66,5 +66,6 @@
 - Step 8 — UI (health bar, timer, game over screen)
 - Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
-- Step 11 — Gold, merchant & gear (drops, shop, equipment)
-- Step 12 — Polish (SFX, VFX, screen shake)
+- Step 11 — Save system (persist gold and gear across runs via JSON save file)
+- Step 12 — Gold, merchant & gear (drops, shop, equipment)
+- Step 13 — Polish (SFX, VFX, screen shake)
