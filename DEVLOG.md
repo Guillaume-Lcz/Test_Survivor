@@ -31,7 +31,7 @@
 - Created `WaveEventManager.cs` — fixed-timeline event system, events disabled until Horde/Elite/Boss types are ready
 - Added `EnemySpawner` and `WaveEventManager` GameObjects to scene, SlimeEnemy prefab wired up
 
-## Step 6 — Weapon System (in progress)
+## Step 6 — Weapon System
 - Created `IWeapon.cs` interface — `Activate()`
 - Created `WeaponManager.cs` — holds list of equipped weapons on Player
 - Created `OrbProjectile.cs` — moves in a direction, triggers `TakeDamage` on enemy contact, self-destructs on hit or max range
