@@ -52,7 +52,6 @@
 - Orb spawn offset reduced from 0.8 to 0.2 — just past player collider edge to avoid physics depenetration while fixing close-range misses
 
 ## Planned
-- Step 6 — Weapon system (auto-attack, projectile)
 - Step 7 — Game Manager (survival timer, game over, restart)
 - Step 8 — UI (health bar, timer, game over screen)
 - Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
