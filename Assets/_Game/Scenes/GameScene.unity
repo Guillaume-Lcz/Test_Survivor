@@ -700,6 +700,8 @@ GameObject:
   - component: {fileID: 2141993597}
   - component: {fileID: 2141993602}
   - component: {fileID: 2141993603}
+  - component: {fileID: 2141993605}
+  - component: {fileID: 2141993604}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -719,7 +721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491fa4d42267d1e42aa63a8848ee616b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
+  moveSpeed: 2.5
 --- !u!58 &2141993598
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -755,7 +757,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.4
+  m_Radius: 0.1
 --- !u!50 &2141993599
 Rigidbody2D:
   serializedVersion: 5
@@ -906,6 +908,37 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2141993604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141993596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 435d15eaac7a1ba45b88245b5b60bedf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OrbShooter
+  damage: 20
+  cooldown: 1
+  projectileSpeed: 4
+  maxRange: 15
+  detectionRadius: 12
+  projectilePrefab: {fileID: 6958306276471783043, guid: 8e37735e8a8bf5e438e3aea77720c429, type: 3}
+  mainCamera: {fileID: 0}
+--- !u!114 &2141993605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141993596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1905cb459ce709749b3f75ca000ab2cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
