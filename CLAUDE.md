@@ -59,7 +59,7 @@ Assets/_Game/
 - [x] Step 5 — Enemy spawner + wave event system (`EnemySpawner.cs`, `IWaveEvent.cs`, `WaveEventManager.cs`)
 - [x] Step 6 — Weapon system (`IWeapon`, `WeaponManager`, `OrbShooter`, `OrbProjectile`)
 - [x] Step 7 — Game Manager (survival timer, game over, restart)
-- [ ] Step 8 — UI (main menu scene, in-game HUD with health bar/timer/kill counter, pause menu, run summary screen on game over)
+- [x] Step 8 — UI (main menu scene, in-game HUD with health bar/timer/kill counter, pause menu, run summary screen on game over)
 - [ ] Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - [ ] Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
 - [ ] Step 11 — Object pooling (pool enemies and projectiles for performance)

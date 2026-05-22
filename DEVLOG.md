@@ -62,8 +62,21 @@
 - **Bug fixed:** `SurvivalTimer.OnTimerUpdated` had no listeners — moved wiring to `UIManager.Start()` as runtime `AddListener`
 - **Bug fixed:** restart button unresponsive — root cause was missing `EventSystem` in scene, not listener persistence
 
+## Step 8 — UI (main menu, in-game HUD, pause menu, run summary)
+- Created `MainMenuScene` — black background canvas, Play button (loads GameScene), Quit button (exits play mode in editor / quits in build), `MainMenuManager.cs`
+- Added `EventSystem` + `InputSystemUIInputModule` to both scenes
+- In-game HUD: health bar (top-left, green fill shrinks via `RectTransform` width), timer (top-center), kill counter (between health and timer, font 40)
+- Kill tracking: `GameManager.RegisterKill()` called from `EnemyBase.Die()`, `KillCount` property exposed
+- Pause menu: ESC toggles pause, window frame (border + dark bg), Resume and Main Menu buttons, calls `GameManager.PauseGame()`/`ResumeGame()`
+- Run summary screen: GAME OVER title, time survived, kill count, Restart and Main Menu buttons, window frame
+- Both scenes added to Build Settings (MainMenuScene index 0, GameScene index 1)
+- **Bug fixed:** `Image.Type.Filled` didn't clip without a sprite — switched to `RectTransform.SetSizeWithCurrentAnchors` for health bar
+- **Bug fixed:** `UIManager.Update()` null ref when `GameManager.Instance` not yet initialised — added null guard
+- **Bug fixed:** `UIManager` accidentally added to `MainMenuScene` canvas — removed; duplicate `MainMenuManager` also cleaned up
+- **Bug fixed:** serialized refs (killText, healthBarFill, summaryTexts) lost on script rewrites — rewired via `SerializedObject` after each compile
+
 ## Planned
-- Step 8 — UI (main menu scene, in-game HUD with health bar/timer/kill counter, pause menu, run summary screen on game over)
+- Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
 - Step 11 — Object pooling (pool enemies and projectiles for performance)
