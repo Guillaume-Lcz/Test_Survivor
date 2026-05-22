@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+public void TakeDamage(float amount)
     {
         if (IsDead || amount <= 0f) return;
 
@@ -37,7 +37,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 
-    private void Die()
+private void Die()
     {
         IsDead = true;
         OnDeath?.Invoke();
