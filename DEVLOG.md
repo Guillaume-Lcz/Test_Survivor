@@ -51,8 +51,18 @@
 - Orb size increased to scale 0.75 (half of player visual size), collider radius matched (0.075)
 - Orb spawn offset reduced from 0.8 to 0.2 — just past player collider edge to avoid physics depenetration while fixing close-range misses
 
+## Step 7 — Game Manager (survival timer, game over, restart)
+- Created `GameManager.cs` — singleton, `GameState` enum (Playing/GameOver/Paused), `TriggerGameOver()` (sets timeScale=0), `RestartGame()` (reloads scene), `OnGameOver`/`OnGameRestart` UnityEvents
+- Created `SurvivalTimer.cs` — tracks elapsed time, fires `OnTimerUpdated(float)` every frame while state is Playing
+- Created `GameOverHandler.cs` — subscribes to `PlayerStats.OnDeath` at runtime, calls `GameManager.TriggerGameOver()`
+- Created `UIManager.cs` — wires timer text and game over panel; subscribes to `SurvivalTimer.OnTimerUpdated` and `GameManager.OnGameOver` at runtime in `Start()`; wires restart button `onClick` at runtime
+- Added `EventSystem` + `InputSystemUIInputModule` to scene (required for UI button clicks — was missing)
+- Added 1-second invulnerability window to `PlayerStats` after each hit (`invulnerabilityDuration` tweakable in Inspector) to prevent damage spam
+- **Bug fixed:** duplicate `UIManager` component on `UICanvas` — removed extra instance
+- **Bug fixed:** `SurvivalTimer.OnTimerUpdated` had no listeners — moved wiring to `UIManager.Start()` as runtime `AddListener`
+- **Bug fixed:** restart button unresponsive — root cause was missing `EventSystem` in scene, not listener persistence
+
 ## Planned
-- Step 7 — Game Manager (survival timer, game over, restart)
 - Step 8 — UI (health bar, timer, game over screen)
 - Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)

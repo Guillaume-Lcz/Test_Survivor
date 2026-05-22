@@ -32,7 +32,11 @@ Target platform: Android.
 | `Scripts/Systems/CameraFollow.cs` | Smooth LateUpdate camera follow |
 | `Scripts/Player/PlayerInputActions.inputactions` | Input map: Move action, Keyboard&Mouse + Gamepad schemes |
 | `Scripts/Systems/IDamageable.cs` | Interface: `TakeDamage(float)` |
-| `Scripts/Player/PlayerStats.cs` | Health, `Heal()`, `OnHealthChanged` / `OnDeath` UnityEvents, implements IDamageable |
+| `Scripts/Player/PlayerStats.cs` | Health, `Heal()`, 1s invulnerability after hit, `OnHealthChanged` / `OnDeath` UnityEvents, implements IDamageable |
+| `Scripts/Systems/GameManager.cs` | Singleton, `GameState` enum, `TriggerGameOver()`, `RestartGame()`, `OnGameOver` UnityEvent |
+| `Scripts/Systems/SurvivalTimer.cs` | Elapsed time tracker, fires `OnTimerUpdated(float)` while Playing |
+| `Scripts/Systems/GameOverHandler.cs` | Bridges `PlayerStats.OnDeath` → `GameManager.TriggerGameOver()` |
+| `Scripts/UI/UIManager.cs` | Timer text, game over panel, restart button — all wired at runtime in `Start()` |
 
 ## Folder Structure
 
@@ -54,7 +58,7 @@ Assets/_Game/
 - [x] Step 4 — Tilemap (chunk-based infinite ground, `TilemapChunkLoader.cs`)
 - [x] Step 5 — Enemy spawner + wave event system (`EnemySpawner.cs`, `IWaveEvent.cs`, `WaveEventManager.cs`)
 - [x] Step 6 — Weapon system (`IWeapon`, `WeaponManager`, `OrbShooter`, `OrbProjectile`)
-- [ ] Step 7 — Game Manager (survival timer, game over, restart)
+- [x] Step 7 — Game Manager (survival timer, game over, restart)
 - [ ] Step 8 — UI (health bar, timer, game over screen)
 - [ ] Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - [ ] Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
