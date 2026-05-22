@@ -22,6 +22,7 @@ Target platform: Android.
 ## Working Style
 
 - Do **one action at a time** — create or edit one file, then wait for the next instruction before continuing.
+- **Update `DEVLOG.md`** at the end of every step — move it from Planned to a completed section with bullet details.
 
 ## Scripts
 
