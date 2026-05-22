@@ -25,8 +25,14 @@
 - **Bug fixed:** `_lastPlayerChunk` initialized to `int.MaxValue` caused integer overflow on first `RefreshChunks()` call, loading garbage chunks — fixed by initializing it to the actual player chunk in `Start()`
 - **Bug fixed:** tiles set via `SetTile()` at runtime were not rendering until `RefreshAllTiles()` was called after each chunk load
 
+## Step 5 — Enemy Spawner & Wave System
+- Created `EnemySpawner.cs` — spawns enemies off-screen at random positions around the camera, interval decreases over time (3s → 0.5s, ramps every 10s)
+- Created `IWaveEvent.cs` — interface for special wave events (`Execute(EnemySpawner)`)
+- Created `WaveEventManager.cs` — fixed-timeline event system, events disabled until Horde/Elite/Boss types are ready
+- Added `EnemySpawner` and `WaveEventManager` GameObjects to scene, SlimeEnemy prefab wired up
+
 ## Planned
-- Step 5 — Enemy spawner (off-screen spawning, difficulty ramp)
+- Step 6 — Weapon system (auto-attack, projectile)
 - Step 6 — Weapon system (auto-attack, projectile)
 - Step 7 — Game Manager (survival timer, game over, restart)
 - Step 8 — UI (health bar, timer, game over screen)

@@ -52,7 +52,7 @@ Assets/_Game/
 - [x] Step 2 — Player health & stats (`PlayerStats.cs`, `IDamageable`)
 - [x] Step 3 — Enemy base (`EnemyBase.cs`, `SlimeEnemy.cs`, `SlimeEnemy.prefab`)
 - [x] Step 4 — Tilemap (chunk-based infinite ground, `TilemapChunkLoader.cs`)
-- [ ] Step 5 — Enemy spawner (off-screen spawning, difficulty ramp)
+- [x] Step 5 — Enemy spawner + wave event system (`EnemySpawner.cs`, `IWaveEvent.cs`, `WaveEventManager.cs`)
 - [ ] Step 6 — Weapon system (auto-attack, projectile)
 - [ ] Step 7 — Game Manager (survival timer, game over, restart)
 - [ ] Step 8 — UI (health bar, timer, game over screen)
