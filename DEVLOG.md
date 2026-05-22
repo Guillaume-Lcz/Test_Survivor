@@ -31,6 +31,26 @@
 - Created `WaveEventManager.cs` — fixed-timeline event system, events disabled until Horde/Elite/Boss types are ready
 - Added `EnemySpawner` and `WaveEventManager` GameObjects to scene, SlimeEnemy prefab wired up
 
+## Step 6 — Weapon System (in progress)
+- Created `IWeapon.cs` interface — `Activate()`
+- Created `WeaponManager.cs` — holds list of equipped weapons on Player
+- Created `OrbProjectile.cs` — moves in a direction, triggers `TakeDamage` on enemy contact, self-destructs on hit or max range
+- Created `OrbShooter.cs` — finds nearest enemy via `Physics2D.OverlapCircleAll`, fires an `OrbProjectile` toward it on cooldown
+- Created `OrbProjectile.prefab` — yellow square, Dynamic Rigidbody2D (gravity 0), trigger CircleCollider2D
+- Added `WeaponManager` + `OrbShooter` to Player, `OrbProjectile` prefab wired up
+- Added `"Enemy"` tag and applied it to `SlimeEnemy` prefab
+- **Bug fixed:** orb spawning at player position triggered `OnTriggerEnter2D` on player's own `IDamageable` — fixed by checking `Enemy` tag only
+- **Bug fixed:** orb speed inconsistent due to physics depenetration when spawning inside player's collider — fixed by offsetting spawn position 0.8 units in fire direction
+- Slime collider radius reduced to 0.4 to match sprite visual bounds
+- `OrbShooter` cooldown set to 1.5s, only targets enemies visible in camera viewport, falls back to last known direction when none visible
+- `OrbProjectile` collider radius reduced from 0.2 to 0.15 to match sprite size (scale 0.3 → radius 0.15)
+- Player move speed reduced from 5 to 2.5
+- **Bug fixed:** orb disappearing before hitting enemy — `detectionRadius` (15) was larger than `maxRange` (10), orb targeted enemies it couldn't reach — fixed by setting detectionRadius=12, maxRange=15
+- **Bug fixed:** SlimeEnemy using CircleCollider2D which was much larger than rectangular sprite — switched to BoxCollider2D sized to sprite bounds (0.16 x 0.16 local)
+- **Bug fixed:** player CircleCollider2D too large (default 0.5 radius * 1.5 scale = 0.75 world units) — reduced to 0.1 local radius (0.15 world units) to match sprite
+- Orb size increased to scale 0.75 (half of player visual size), collider radius matched (0.075)
+- Orb spawn offset reduced from 0.8 to 0.2 — just past player collider edge to avoid physics depenetration while fixing close-range misses
+
 ## Planned
 - Step 6 — Weapon system (auto-attack, projectile)
 - Step 7 — Game Manager (survival timer, game over, restart)
