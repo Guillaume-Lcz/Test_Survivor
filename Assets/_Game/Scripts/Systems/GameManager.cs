@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public enum GameState { Playing, GameOver, Paused }
     public GameState State { get; private set; } = GameState.Playing;
 
+    public int KillCount { get; private set; }
+
     public UnityEvent OnGameOver;
     public UnityEvent OnGameRestart;
 
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
     }
+
+    public void RegisterKill() => KillCount++;
 
     public void TriggerGameOver()
     {
