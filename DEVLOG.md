@@ -63,9 +63,14 @@
 - **Bug fixed:** restart button unresponsive — root cause was missing `EventSystem` in scene, not listener persistence
 
 ## Planned
-- Step 8 — UI (health bar, timer, game over screen)
+- Step 8 — UI (main menu scene, in-game HUD with health bar/timer/kill counter, pause menu, run summary screen on game over)
 - Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
-- Step 11 — Save system (persist gold and gear across runs via JSON save file)
-- Step 12 — Gold, merchant & gear (drops, shop, equipment)
-- Step 13 — Polish (SFX, VFX, screen shake)
+- Step 11 — Object pooling (pool enemies and projectiles for performance)
+- Step 12 — Damage numbers (floating combat text, pooled, shown on hit)
+- Step 13 — Weapon variety (new weapon types, passive items, evolution system)
+- Step 14 — Enemy variety (elites and bosses via WaveEventManager, scaling stats)
+- Step 15 — Save system (persist gold and gear across runs via JSON save file)
+- Step 16 — Run history (best time, most kills, stored in save file)
+- Step 17 — Gold, merchant & gear (drops, shop, equipment)
+- Step 18 — Polish (SFX, screen shake, enemy death VFX)
