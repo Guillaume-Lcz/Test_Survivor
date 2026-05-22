@@ -27,8 +27,7 @@
 
 ## Planned
 - Step 5 — Enemy spawner (off-screen spawning, difficulty ramp)
-- Step 4 — Enemy spawner (off-screen spawning, difficulty ramp)
-- Step 5 — Weapon system (auto-attack, projectile)
-- Step 6 — Game Manager (survival timer, game over, restart)
-- Step 7 — UI (health bar, timer, game over screen)
-- Step 8 — Polish (SFX, VFX, screen shake)
+- Step 6 — Weapon system (auto-attack, projectile)
+- Step 7 — Game Manager (survival timer, game over, restart)
+- Step 8 — UI (health bar, timer, game over screen)
+- Step 9 — Polish (SFX, VFX, screen shake)
