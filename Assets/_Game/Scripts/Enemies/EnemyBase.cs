@@ -50,7 +50,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    protected virtual void OnCollisionStay2D(Collision2D col)
+protected virtual void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
         {
