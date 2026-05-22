@@ -47,6 +47,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
 
     protected virtual void Die()
     {
+        GameManager.Instance?.RegisterKill();
         Destroy(gameObject);
     }
 
