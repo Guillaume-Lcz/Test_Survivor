@@ -5,10 +5,13 @@ public class PlayerStats : MonoBehaviour, IDamageable
 {
     [Header("Health")]
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] private float invulnerabilityDuration = 1f;
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth { get; private set; }
     public bool IsDead { get; private set; }
+
+    private float _invulnerabilityTimer;
 
     public UnityEvent<float, float> OnHealthChanged; // current, max
     public UnityEvent OnDeath;
@@ -18,9 +21,16 @@ public class PlayerStats : MonoBehaviour, IDamageable
         CurrentHealth = maxHealth;
     }
 
-public void TakeDamage(float amount)
+    private void Update()
     {
-        if (IsDead || amount <= 0f) return;
+        if (_invulnerabilityTimer > 0f)
+            _invulnerabilityTimer -= Time.deltaTime;
+    }
+
+    public void TakeDamage(float amount)
+    {
+        if (IsDead || amount <= 0f || _invulnerabilityTimer > 0f) return;
+        _invulnerabilityTimer = invulnerabilityDuration;
 
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
