@@ -77,7 +77,6 @@
 
 ## Planned
 - Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
-- Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
 - Step 11 — Object pooling (pool enemies and projectiles for performance)
 - Step 12 — Damage numbers (floating combat text, pooled, shown on hit)
