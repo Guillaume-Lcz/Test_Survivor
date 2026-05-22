@@ -18,8 +18,14 @@
 - Created `SlimeEnemy.cs` — first concrete subclass of `EnemyBase`
 - Created `SlimeEnemy.prefab` in `Prefabs/Enemies/` — green rectangle, stats tweakable in Inspector
 
+## Step 4 — Tilemap (chunk-based infinite ground)
+- Created `GroundTile.png` (64x64, grid pattern) and `GroundTile.asset` in `Art/Sprites/Tiles/`
+- Set up `Grid` + `Ground` Tilemap GameObject in scene, `TilemapRenderer` sorting order -1
+- Created `TilemapChunkLoader.cs` — tracks player chunk every frame, loads/unloads 16x16 tile chunks within a radius of 3 around the player
+- **Bug fixed:** `_lastPlayerChunk` initialized to `int.MaxValue` caused integer overflow on first `RefreshChunks()` call, loading garbage chunks — fixed by initializing it to the actual player chunk in `Start()`
+- **Bug fixed:** tiles set via `SetTile()` at runtime were not rendering until `RefreshAllTiles()` was called after each chunk load
+
 ## Planned
-- Step 4 — Tilemap (large ground layer)
 - Step 5 — Enemy spawner (off-screen spawning, difficulty ramp)
 - Step 4 — Enemy spawner (off-screen spawning, difficulty ramp)
 - Step 5 — Weapon system (auto-attack, projectile)
