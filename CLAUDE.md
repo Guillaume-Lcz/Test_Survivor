@@ -36,7 +36,9 @@ Target platform: PC (prototype).
 | `Scripts/Systems/GameManager.cs` | Singleton, `GameState` enum, `TriggerGameOver()`, `RestartGame()`, `OnGameOver` UnityEvent |
 | `Scripts/Systems/SurvivalTimer.cs` | Elapsed time tracker, fires `OnTimerUpdated(float)` while Playing |
 | `Scripts/Systems/GameOverHandler.cs` | Bridges `PlayerStats.OnDeath` → `GameManager.TriggerGameOver()` |
-| `Scripts/UI/UIManager.cs` | Timer text, game over panel, restart button — all wired at runtime in `Start()` |
+| `Scripts/UI/UIManager.cs` | Timer text, game over panel, restart button, health/XP bars, pause — all wired at runtime in `Start()` |
+| `Scripts/Player/PlayerXP.cs` | XP tracking, level-up logic (×1.2 scaling), `OnXPChanged` / `OnLevelUp` UnityEvents |
+| `Scripts/Systems/XPGem.cs` | Collectible XP drop — Kinematic RB2D, attracted to player at `pickupRadius`, `MovePosition` movement |
 
 ## Folder Structure
 
@@ -60,7 +62,7 @@ Assets/_Game/
 - [x] Step 6 — Weapon system (`IWeapon`, `WeaponManager`, `OrbShooter`, `OrbProjectile`)
 - [x] Step 7 — Game Manager (survival timer, game over, restart)
 - [x] Step 8 — UI (main menu scene, in-game HUD with health bar/timer/kill counter, pause menu, run summary screen on game over)
-- [ ] Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
+- [x] Step 9 — XP system (`PlayerXP.cs`, `XPGem.cs`, XP gem drops 66%, XP bar + level text in HUD)
 - [ ] Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
 - [ ] Step 11 — Object pooling (pool enemies and projectiles for performance)
 - [ ] Step 12 — Damage numbers (floating combat text, pooled, shown on hit)

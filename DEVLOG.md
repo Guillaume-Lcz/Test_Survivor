@@ -75,8 +75,18 @@
 - **Bug fixed:** `UIManager` accidentally added to `MainMenuScene` canvas — removed; duplicate `MainMenuManager` also cleaned up
 - **Bug fixed:** serialized refs (killText, healthBarFill, summaryTexts) lost on script rewrites — rewired via `SerializedObject` after each compile
 
+## Step 9 — XP System
+- Created `PlayerXP.cs` — tracks current XP, level, `XPToNextLevel` (scales ×1.2 per level), fires `OnXPChanged(float,float)` and `OnLevelUp(int)` UnityEvents
+- Created `XPGem.cs` — collectible drop, Kinematic Rigidbody2D + Interpolate for smooth movement; attracted to player within `pickupRadius` (2 units), moves via `MovePosition` at `speed` 3.5 units/s, destroys on contact and calls `PlayerXP.AddXP()`
+- Created `XPGem.prefab` — UISprite, blue color, scale 0.75, rotated 45° (diamond shape), isTrigger CircleCollider2D radius 0.15
+- Updated `EnemyBase.cs` — `Die()` spawns XP gem with 66% drop chance
+- Updated `UIManager.cs` — XP bar (same width-scaling pattern as health bar, starts empty), level text `Lv N`
+- **Bug fixed:** XP bar started fully filled — added `xpBarFill.SetSizeWithCurrentAnchors(0f)` in `Start()`
+- **Bug fixed:** XP gem invisible — sprite was not set on prefab; set to UISprite (built-in)
+- **Bug fixed:** Gem not collecting — `CircleCollider2D.isTrigger` was false; contact detection also added as fallback via distance check in `FixedUpdate`
+- **Bug fixed:** Gem slow/inconsistent speed — Dynamic RB2D with physics drag fought velocity; switched to Kinematic + MovePosition for physics-independent smooth movement
+
 ## Planned
-- Step 9 — XP system (XP drops from enemies, XP bar, level up trigger)
 - Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
 - Step 11 — Object pooling (pool enemies and projectiles for performance)
 - Step 12 — Damage numbers (floating combat text, pooled, shown on hit)
