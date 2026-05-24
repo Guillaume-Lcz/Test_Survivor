@@ -6,13 +6,16 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI killText;
+    [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private RectTransform healthBarFill;
+    [SerializeField] private RectTransform xpBarFill;
     [SerializeField] private TextMeshProUGUI summaryTimeText;
     [SerializeField] private TextMeshProUGUI summaryKillsText;
 
     private float _healthBarMaxWidth;
+    private float _xpBarMaxWidth;
     private SurvivalTimer _timer;
 
     private void Start()
@@ -32,15 +35,18 @@ public class UIManager : MonoBehaviour
         resumeBtn.onClick.AddListener(Resume);
 
         var menuBtn = pausePanel.transform.Find("MenuButton").GetComponent<UnityEngine.UI.Button>();
-        menuBtn.onClick.AddListener(() => {
-            Time.timeScale = 1f;
-            SceneManager.LoadScene("MainMenuScene");
-        });
+        menuBtn.onClick.AddListener(() => { Time.timeScale = 1f; SceneManager.LoadScene("MainMenuScene"); });
 
         var stats = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
         stats.OnHealthChanged.AddListener(UpdateHealthBar);
 
+        var xp = GameObject.FindWithTag("Player").GetComponent<PlayerXP>();
+        xp.OnXPChanged.AddListener(UpdateXPBar);
+        xp.OnLevelUp.AddListener(UpdateLevel);
+
         _healthBarMaxWidth = healthBarFill.rect.width;
+        _xpBarMaxWidth = xpBarFill.rect.width;
+        xpBarFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0f);
     }
 
     private void Update()
@@ -80,6 +86,16 @@ public class UIManager : MonoBehaviour
     private void UpdateHealthBar(float current, float max)
     {
         healthBarFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _healthBarMaxWidth * (current / max));
+    }
+
+    private void UpdateXPBar(float current, float required)
+    {
+        xpBarFill.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _xpBarMaxWidth * (current / required));
+    }
+
+    private void UpdateLevel(int level)
+    {
+        levelText.text = $"Lv {level}";
     }
 
     private void ShowGameOver()
