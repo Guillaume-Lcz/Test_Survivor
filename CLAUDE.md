@@ -63,7 +63,7 @@ Assets/_Game/
 - [x] Step 7 — Game Manager (survival timer, game over, restart)
 - [x] Step 8 — UI (main menu scene, in-game HUD with health bar/timer/kill counter, pause menu, run summary screen on game over)
 - [x] Step 9 — XP system (`PlayerXP.cs`, `XPGem.cs`, XP gem drops 66%, XP bar + level text in HUD)
-- [ ] Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
+- [x] Step 10 — Perk system (`PerkSO`, `PerkManager`, `PerkSelectionUI`, 5 perk assets, burst multi-shot, fire rate diminishing returns)
 - [ ] Step 11 — Object pooling (pool enemies and projectiles for performance)
 - [ ] Step 12 — Damage numbers (floating combat text, pooled, shown on hit)
 - [ ] Step 13 — Weapon variety (new weapon types, passive items, evolution system)

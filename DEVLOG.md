@@ -86,8 +86,17 @@
 - **Bug fixed:** Gem not collecting — `CircleCollider2D.isTrigger` was false; contact detection also added as fallback via distance check in `FixedUpdate`
 - **Bug fixed:** Gem slow/inconsistent speed — Dynamic RB2D with physics drag fought velocity; switched to Kinematic + MovePosition for physics-independent smooth movement
 
+## Step 10 — Perk System
+- Expanded `IWeapon` interface — added `Damage`, `FireRateBonus`, `ProjectileSpeed`, `Range`, `ProjectileCount` properties
+- Updated `OrbShooter` — implements all `IWeapon` properties via public get/set backed by serialized fields; `baseCooldown` + `_fireRateBonus` accumulator with `EffectiveCooldown = baseCooldown / (1 + bonus)` for diminishing returns; multi-shot fires burst via coroutine (0.12s between shots, all in same direction)
+- Created `PerkSO.cs` — ScriptableObject with `WeaponStat` enum (Damage, FireRate, ProjectileSpeed, Range, ProjectileCount), `value` field; `Apply(GameObject)` modifies weapon via `IWeapon` interface
+- Created 5 perk assets in `Assets/_Game/Perks/` — Damage ×1.2, FireRate +0.2, ProjectileSpeed ×1.2, Range ×1.2, ProjectileCount +1
+- Created `PerkManager.cs` — attached to GameManager GO, holds perk pool, picks 3 random perks on level up, pauses game, fires `OnPerkChoicesReady`; `SelectPerk()` applies perk and resumes
+- Created `PerkSelectionUI.cs` — subscribes to `OnPerkChoicesReady`, spawns 3 `PerkCard` instances in horizontal layout, calls `PerkManager.SelectPerk` on click
+- Created `PerkCard.prefab` — white rectangle, dark Outline component, VerticalLayoutGroup, Name (bold 20pt) + Description (14pt) TMP text, Button component
+- Added `PerkSelectionPanel` to GameScene — full-screen dark overlay, "LEVEL UP!" title, CardsContainer with HorizontalLayoutGroup
+
 ## Planned
-- Step 10 — Perk system (perk definitions, perk pool, perk selection on level up)
 - Step 11 — Object pooling (pool enemies and projectiles for performance)
 - Step 12 — Damage numbers (floating combat text, pooled, shown on hit)
 - Step 13 — Weapon variety (new weapon types, passive items, evolution system)
