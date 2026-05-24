@@ -135,7 +135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SlimeEnemy
   maxHealth: 40
   moveSpeed: 2
-  contactDamage: 10
+  contactDamage: 20
+  xpReward: 10
+  xpGemPrefab: {fileID: 6588465860069386253, guid: 6605289097c1d8a4593591adc139088d, type: 3}
+  xpGemDropChance: 0.66
 --- !u!61 &4228494679660161025
 BoxCollider2D:
   m_ObjectHideFlags: 0
