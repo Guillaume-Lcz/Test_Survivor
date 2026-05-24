@@ -1,13 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
 public class OrbShooter : MonoBehaviour, IWeapon
 {
     [Header("Settings")]
     [SerializeField] private float damage = 20f;
-    [SerializeField] private float cooldown = 1.5f;
+    [SerializeField] private float baseCooldown = 1.5f;
     [SerializeField] private float projectileSpeed = 4f;
     [SerializeField] private float maxRange = 10f;
     [SerializeField] private float detectionRadius = 15f;
+    [SerializeField] private int projectileCount = 1;
+
+    private float _fireRateBonus = 0f;
+    private float EffectiveCooldown => baseCooldown / (1f + _fireRateBonus);
+
+    public float Damage { get => damage; set => damage = value; }
+    public float FireRateBonus { get => _fireRateBonus; set => _fireRateBonus = value; }
+    public float ProjectileSpeed { get => projectileSpeed; set => projectileSpeed = value; }
+    public float Range { get => maxRange; set => maxRange = value; }
+    public int ProjectileCount { get => projectileCount; set => projectileCount = value; }
 
     [Header("References")]
     [SerializeField] private GameObject projectilePrefab;
@@ -25,7 +36,7 @@ public class OrbShooter : MonoBehaviour, IWeapon
     private void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer >= cooldown)
+        if (_timer >= EffectiveCooldown)
         {
             _timer = 0f;
             Activate();
@@ -42,9 +53,19 @@ public class OrbShooter : MonoBehaviour, IWeapon
         if (direction == Vector2.zero) return;
         _lastDirection = direction;
 
-        Vector3 spawnPos = transform.position + (Vector3)(direction * 0.2f);
-        GameObject orb = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        orb.GetComponent<OrbProjectile>().Init(damage, projectileSpeed, maxRange, direction);
+        StartCoroutine(FireBurst(direction));
+    }
+
+    private IEnumerator FireBurst(Vector2 direction)
+    {
+        for (int i = 0; i < projectileCount; i++)
+        {
+            Vector3 spawnPos = transform.position + (Vector3)(direction * 0.2f);
+            GameObject orb = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+            orb.GetComponent<OrbProjectile>().Init(damage, projectileSpeed, maxRange, direction);
+            if (i < projectileCount - 1)
+                yield return new WaitForSeconds(0.12f);
+        }
     }
 
     private Transform FindNearestVisibleEnemy()
