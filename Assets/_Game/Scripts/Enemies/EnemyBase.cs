@@ -7,6 +7,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     [SerializeField] protected float maxHealth = 30f;
     [SerializeField] protected float moveSpeed = 2f;
     [SerializeField] protected float contactDamage = 10f;
+    [SerializeField] protected float xpReward = 10f;
 
     protected float currentHealth;
     protected Rigidbody2D rb;
@@ -45,9 +46,15 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
             Die();
     }
 
+    [Header("Drops")]
+    [SerializeField] private GameObject xpGemPrefab;
+    [SerializeField] private float xpGemDropChance = 0.66f;
+
     protected virtual void Die()
     {
         GameManager.Instance?.RegisterKill();
+        if (xpGemPrefab != null && Random.value <= xpGemDropChance)
+            Instantiate(xpGemPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
